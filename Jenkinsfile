@@ -1,7 +1,6 @@
 pipeline {
 	    agent {
-		label 'UiPathWindows'
-		customWorkspace 'C:\Jenkins'
+		label 'UiPathWindows'		
 	    }
 	
 
