@@ -1,6 +1,6 @@
 pipeline {
 	    agent {
-		label 'UiPathWindows'		
+		label 'Jenkins-Win'		
 	    }
 	
 
