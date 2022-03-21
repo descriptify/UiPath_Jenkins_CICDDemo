@@ -1,7 +1,5 @@
 pipeline {
-	    agent {
-		label 'Jenkins-Win'		
-	    }
+	    agent none
 	
 
 	        // Environment Variables
@@ -36,6 +34,7 @@ pipeline {
 
 	         // Build Stages
 	        stage('Build') {
+		    agent { label 'Jenkins-Win' }
 	            steps {
 	                echo "Building..with ${WORKSPACE}"
 	                UiPathPack (
@@ -49,6 +48,7 @@ pipeline {
 	        }
 	         // Test Stages
 	        stage('Test') {
+		    agent { label 'Jenkins-Win' }
 	            steps {
 	                echo 'Testing..the workflow...'
 	            }
@@ -57,6 +57,7 @@ pipeline {
 
 	         // Deploy Stages
 	        stage('Deploy to UAT') {
+		    agent { label 'Jenkins-Win' }
 	            steps {
 	                echo "Deploying ${BRANCH_NAME} to UAT "
 	                UiPathDeploy (
@@ -80,6 +81,7 @@ pipeline {
 
 	         // Deploy to Production Step
 	        stage('Deploy to Production') {
+		    agent { label 'Jenkins-Win' }
 	            steps {
 	                echo 'Deploy to Production'
 	                }
