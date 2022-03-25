@@ -1,5 +1,5 @@
 pipeline {
-	    agent any
+	    agent { label 'Jenkins-Win' }
 	
 
 	        // Environment Variables
@@ -8,9 +8,9 @@ pipeline {
 	        MINOR = '0'
 	        //Orchestrator Services
 	        UIPATH_ORCH_URL = "https://cloud.uipath.com/"
-	        UIPATH_ORCH_LOGICAL_NAME = "anupaminc"
-	        UIPATH_ORCH_TENANT_NAME = "Descriptify"
-	        UIPATH_ORCH_FOLDER_NAME = "Default"
+	        UIPATH_ORCH_LOGICAL_NAME = "orgnsogbsi"
+	        UIPATH_ORCH_TENANT_NAME = "DefaultTenant"
+	        UIPATH_ORCH_FOLDER_NAME = "Shared"
 	    }
 	
 
@@ -34,6 +34,7 @@ pipeline {
 
 	         // Build Stages
 	        stage('Build') {
+		    //agent { label 'Jenkins-Win' }
 	            steps {
 	                echo "Building..with ${WORKSPACE}"
 	                UiPathPack (
@@ -41,12 +42,13 @@ pipeline {
 	                      projectJsonPath: "project.json",
 	                      version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 	                      useOrchestrator: false,
-						  traceLevel: 'None'
+			      traceLevel: 'None'
 	        )
 	            }
 	        }
 	         // Test Stages
 	        stage('Test') {
+		    //agent { label 'Jenkins-Win' }
 	            steps {
 	                echo 'Testing..the workflow...'
 	            }
@@ -55,6 +57,7 @@ pipeline {
 
 	         // Deploy Stages
 	        stage('Deploy to UAT') {
+		    //agent { label 'Jenkins-Win' }
 	            steps {
 	                echo "Deploying ${BRANCH_NAME} to UAT "
 	                UiPathDeploy (
@@ -65,8 +68,8 @@ pipeline {
 	                environments: 'DEV',
 	                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'APIUserKey']
 	                credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
-					traceLevel: 'None',
-					entryPointPaths: 'Main.xaml'
+			traceLevel: 'None',
+			entryPointPaths: 'Main.xaml'
 	
 
 	        )
@@ -78,6 +81,7 @@ pipeline {
 
 	         // Deploy to Production Step
 	        stage('Deploy to Production') {
+		    //agent { label 'Jenkins-Win' }
 	            steps {
 	                echo 'Deploy to Production'
 	                }
