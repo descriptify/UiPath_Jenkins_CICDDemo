@@ -1,22 +1,21 @@
 pipeline {
 	    agent any
 	
-
 	        // Environment Variables
 	        environment {
 	        MAJOR = '1'
 	        MINOR = '0'
 	        //Orchestrator Services
 	        UIPATH_ORCH_URL = "https://cloud.uipath.com/"
-	        UIPATH_ORCH_LOGICAL_NAME = "anupaminc"
-	        UIPATH_ORCH_TENANT_NAME = "Descriptify"
-	        UIPATH_ORCH_FOLDER_NAME = "Default"
+	        UIPATH_ORCH_LOGICAL_NAME = "saradanamburi"
+	        UIPATH_ORCH_TENANT_NAME = "saradanamburi"
+	        UIPATH_ORCH_FOLDER_NAME = "Shared"
 	    }
 	
 
 	    stages {
 	
-
+//
 	        // Printing Basic Information
 	        stage('Preparing'){
 	            steps {
@@ -62,9 +61,9 @@ pipeline {
 	                orchestratorAddress: "${UIPATH_ORCH_URL}",
 	                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
 	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
-	                environments: 'DEV',
+	                //environments: 'DEV',
 	                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'APIUserKey']
-	                credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
+	                credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: '_9k5cK9oUpE2ER4M2VrpsLMPBDorlAudUZRlcG61xGhcH'), 
 					traceLevel: 'None',
 					entryPointPaths: 'Main.xaml'
 	
