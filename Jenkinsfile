@@ -56,15 +56,14 @@ pipeline {
 	         // Deploy Stages
 	        stage('Deploy to UAT') {
 	            steps {
-	                echo "Deploying ${BRANCH_NAME} to UAT "
+	                echo "Deploying ${master} to UAT "
 	                UiPathDeploy (
-	                packagePath: "Output\\${env.BUILD_NUMBER}",
-	                orchestratorAddress: "${UIPATH_ORCH_URL}",
-	                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
-	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
-	                environments: 'DEV',
+	             
+	                orchestratorAddress: "${cloud.uipath.com/ssstkwxnjg/nikita/orchestrator}",
+	                orchestratorTenant: "${nikita}",
+	                folderName: "${IT}",
 	                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'APIUserKey']
-	                credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
+	                credentials: Token(accountName: "${nikita}", credentialsId: 'GIzyG5OvGJ2mVv1V22TqUe9i8jj7C9_uJpt6yF9mUFiH_'), 
 					traceLevel: 'None',
 					entryPointPaths: 'Main.xaml'
 	
